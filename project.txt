@@ -1,0 +1,58 @@
+1. Project Overview
+Objective: The Bank Management System (BMS) is a console application that allows both administrators and users to manage bank accounts. Administrators have full control over account creation, updates, and deletions, while users can only manage their own accounts and perform transactions.
+
+2. System Architecture
+Components:
+
+Account Class: Represents a single bank account, including account number, holder's name, balance, and password. Provides methods for serialization and deserialization for saving/loading to/from files.
+Bank Class: Manages all accounts and handles user and admin operations. Provides methods for account management (create, delete, update, etc.), and handles login and menu interactions.
+File Handling: Accounts are stored in a text file (accounts.txt). The system reads from this file on startup and writes to it on shutdown.
+3. Main Features
+For Administrators:
+
+Login: Admins log in using a password.
+Account Management: Admins can create new accounts, show all accounts, search for specific accounts, deposit and withdraw money from any account, delete accounts, and inquire about balances.
+CRUD Operations: Full control over the accounts' lifecycle (Create, Read, Update, Delete).
+For Users:
+
+Login: Users log in with their account number and password.
+Transactions: Users can deposit and withdraw money from their own accounts.
+Balance Inquiry: Users can check the balance of their own account.
+4. Detailed Functionality
+Account Class:
+
+Attributes: accountNumber, name, balance, password.
+Methods:
+serialize(): Converts account details to a string format for saving.
+deserialize(): Converts a string format back to an Account object.
+authenticate(): Checks if the provided password matches the stored password.
+Bank Class:
+
+Attributes: accounts (vector of Account), availableAccountNumbers (set of reusable account numbers), nextAccountNumber.
+Methods:
+Admin Operations:
+adminMenu(): Presents a menu for admin operations.
+createNewAccount(), showAllAccounts(), searchAccount(), deleteAccount(), depositMoney(), withdrawMoney(), balanceInquiry().
+User Operations:
+userMenu(): Presents a menu for user operations.
+depositMoney(Account* account), withdrawMoney(Account* account), balanceInquiry(Account* account).
+Login:
+loginAsAdmin(): Handles admin login and menu navigation.
+loginAsUser(): Handles user login and menu navigation.
+File Handling:
+loadAccounts(): Loads accounts from the file.
+saveAccounts(): Saves accounts to the file.
+Utility Methods:
+clearInputBuffer(): Clears the input buffer to avoid issues with leftover newline characters.
+5. Code Organization
+Initialization: On startup, the Bank object loads account data from the file and sets up the initial state.
+Menu System: Users and admins navigate through different functionalities using a text-based menu.
+File Operations: Accounts are read from and written to accounts.txt for persistence.
+6. Key Considerations
+Input Validation: Ensures that all user inputs are valid and handles errors gracefully.
+Security: Passwords are stored and checked to provide access control.
+Flexibility: Admins can manage all aspects of the bank, while users can only manage their own accounts.
+7. Future Enhancements
+Graphical User Interface (GUI): Implement a GUI for a more user-friendly experience.
+Enhanced Security: Implement encryption for password storage.
+Extended Features: Add features such as account transfer, interest calculations, or more detailed transaction history.
